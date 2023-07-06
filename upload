@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+set -eu
+set -o pipefail
+
+git config user.name "Septimal Mind"
+git config user.email "team@7mind.io"
+
+git branch -D tmp || true
+git checkout --orphan tmp
+git commit -am"Current site version"
+git branch -D master
+git checkout -b master
+git branch -D tmp
+
+git push --set-upstream -f origin master
